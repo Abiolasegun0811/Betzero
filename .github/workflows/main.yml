@@ -1,0 +1,23 @@
+name: Run Python Script
+
+on:
+  push:  # Runs the script when code is pushed to the repo
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install selenium webdriver-manager requests python-telegram-bot
+
+      - name: Run Python Script
+        run: python -u headless_betzero.py
